@@ -73,13 +73,21 @@ function ProfileSection() {
   };
 
   const handleDeletePost = (postId) => {
-    axios.delete(`${urlPosts}/${postId}`).then(() => {
-      setPosts(posts.filter((post) => post.id !== postId));
-      setdeletePostAlert(true);
-      setTimeout(() => {
-        setdeletePostAlert(false);
-      }, 2000);
-    });
+    const confirmDelete = window.confirm('Do you want to delete this post?');
+    if (confirmDelete) {
+      axios
+        .delete(`${urlPosts}/${postId}`)
+        .then(() => {
+          setPosts(posts.filter((post) => post.id !== postId));
+          setdeletePostAlert(true);
+          setTimeout(() => {
+            setdeletePostAlert(false);
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error('There was an error deleting the post!', error);
+        });
+    }
   };
 
   if (!user) {
