@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MessageCard from '../components/MessageCard';
 import AlertToast from './AlertToast';
+import { Link } from 'react-router-dom';
 
 function ProfileSection() {
   const [selectedTab, setSelectedTab] = useState('posts');
@@ -203,37 +204,73 @@ function ProfileSection() {
               Edit avatar
             </button>
           </div>
-          <div className="flex space-x-4 mt-4">
+          <div className="flex  mt-4">
             <button
-              className={`py-2 px-4 rounded ${
+              className={`py-2 px-4  border-b-2 ${
                 selectedTab === 'posts'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200'
+                  ? ' border-b border-b-blue-400 text-blue-400'
+                  : 'hover:bg-dim-200 text-white border-b'
               }`}
               onClick={() => setSelectedTab('posts')}
             >
               Posts
             </button>
             <button
-              className={`py-2 px-4 rounded ${
+              className={`py-2 px-4  border-b-2 ${
                 selectedTab === 'reposts'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200'
+                  ? ' border-b border-b-blue-400 text-blue-400'
+                  : 'hover:bg-dim-200 text-white border-b'
               }`}
               onClick={() => setSelectedTab('reposts')}
             >
               Reposts
             </button>
             <button
-              className={`py-2 px-4 rounded ${
+              className={`py-2 px-4  border-b-2 ${
                 selectedTab === 'likes'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200'
+                  ? ' border-b border-b-blue-400 text-blue-400'
+                  : 'hover:bg-dim-200 text-white border-b'
               }`}
               onClick={() => setSelectedTab('likes')}
             >
               Likes
             </button>
+            <div className="flex justify-center items-center flex-1 flex-row-reverse md:hidden">
+              <Link
+                className="flex gap-1 justify-center items-center hover:bg-dim-200 pe-1 py-1 rounded"
+                onClick={() => {
+                  localStorage.clear();
+                  navigate('../');
+                }}
+              >
+                <svg
+                  fill="red"
+                  className="w-5 h-5 ml-3 hover:fill-red-500"
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 384.971 384.971"
+                  xmlSpace="preserve"
+                >
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g>
+                      <g id="Sign_Out">
+                        <path d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03 C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03 C192.485,366.299,187.095,360.91,180.455,360.91z"></path>
+                        <path d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279 c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179 c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+                Log out
+              </Link>
+            </div>
           </div>
         </div>
 
